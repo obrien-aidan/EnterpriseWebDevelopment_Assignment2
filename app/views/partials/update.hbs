@@ -1,0 +1,13 @@
+{{#if update}}
+    <div class="ui positive message transition">
+        <i class="close icon"></i>
+        <div class="header">
+            Update successful
+        </div>
+        <ul class="list">
+            {{#each update}}
+                <li>{{message}}</li>
+            {{/each}}
+        </ul>
+    </div>
+{{/if}}

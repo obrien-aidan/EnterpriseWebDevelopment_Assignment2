@@ -1,0 +1,59 @@
+<section class="ui basic segment">
+    <h2 class="ui header">Add an Island to the List</h2>
+    <div class="ui grid">
+        <form action="/addIsland" enctype='multipart/form-data' method="POST">
+            <div class="ui form">
+                <div class="ui very padded basic segment">
+                    <div class="ui segment ten wide column">
+                        <label>Name</label> <input placeholder="Name" type="text" name="name" />
+                    </div>
+                    <div class="ui segment">
+                        <div class="ui form">
+                            <div class="inline fields">
+                                <label>Provence:</label>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="provence" value="Connacht">
+                                        <label>Connacht</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="provence" value="Leinster">
+                                        <label>Leinster</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="provence" value="Munster">
+                                        <label>Munster</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="provence" value="Ulster">
+                                        <label>Ulster</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui segment">
+                        <label>Description</label>
+                        <textarea placeholder="Tell us more" rows="6" type="text" name="description"></textarea>
+                    </div>
+                    <div class="ui segment">
+                        <label>Upload Image</label>
+                        <input rows="6" type="file" name="image" id="image">
+                    </div>
+                    <button class="ui blue submit button">Add Island</button>
+                    {{> error }}
+                </div>
+            </div>
+        </form>
+
+        <aside class="seven wide column">
+            <img class="ui middle aligned massive image" src="images/island2.jpg">
+        </aside>
+    </div>
+</section>

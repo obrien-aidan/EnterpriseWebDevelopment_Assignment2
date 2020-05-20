@@ -1,0 +1,32 @@
+<section class="ui raised segment">
+    <div class="ui grid">
+        <article style="width:100%">
+            <table class="ui striped celled table segment" style="table-layout:fixed; width:100%">
+                <tr>
+                    <p></p>
+                    <h1 class="ui header">Islands List</h1>
+                </tr>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Provence</th>
+                        <th colspan="2"> Description</th>
+                        <th>User</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each islands}}
+                    <tr>
+                        <td style="word-wrap: break-word;"> {{name}} </td>
+                        <td style="word-wrap: break-word;"> {{provence}} </td>
+                        <td colspan="2" style="word-wrap: break-word;"> {{description}} </td>
+                        <td style="word-wrap: break-word;"> {{user.firstName}} {{user.lastName}} </td>
+                        <td style="word-wrap: break-word;"><img src={{image}} width="100%" height="auto"> </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </article>
+    </div>
+</section>
