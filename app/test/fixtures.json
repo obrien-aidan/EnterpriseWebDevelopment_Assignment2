@@ -1,0 +1,43 @@
+{
+  "funnelService": "http://localhost:3000",
+  "users": [
+    {
+      "firstName": "Homer",
+      "lastName": "Simpson",
+      "email": "homer@simpson.com",
+      "password": "secret"
+    },
+    {
+      "firstName": "Marge",
+      "lastName": "Simpson",
+      "email": "marge@simpson.com",
+      "password": "secret"
+    },
+    {
+      "firstName": "Bart",
+      "lastName": "Simpson",
+      "email": "bart@simpson.com",
+      "password": "secret"
+    }
+  ],
+  "newUser": {
+    "firstName": "Maggie",
+    "lastName": "Simpson",
+    "email": "maggie@simpson.com",
+    "password": "secret"
+  },
+  "islands": [
+    {
+      "name": "Inishquirk",
+      "description": "Inishquirk L907-944 Sheet 30 Fine agricultural unit separated from the mainland at all tides. Land in a sheltered sandy cove in the NE.",
+      "user": "->users.bart",
+      "image": "https://res.cloudinary.com/dk85dbzil/image/upload/v1589660875/pic5_iihdhp.jpg"
+    },
+    {
+      "name": "Collan Beg",
+      "description": "Collan Beg L913-883 Sheet 30 Lovely small neighbour of Collan More, barely detached at LW. Inhabited with one very private summer home, it is lovely to walk. Grazed by sheep. Camping to the S of the dwelling at the end of the sound, where land onto sand.",
+      "user": "->users.marge",
+      "image": "https://res.cloudinary.com/dk85dbzil/image/upload/v1589660873/pic4_z2aeyz.jpg"
+    }
+  ]
+}
