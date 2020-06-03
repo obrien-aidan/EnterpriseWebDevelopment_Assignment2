@@ -29,10 +29,10 @@ const Islands = {
         handler: async function(request, h) {
             const userId = utils.getUserIdFromRequest(request);
             let island = new Island(request.payload);
-            //const user = await User.findOne({ _id: request.params.id });
-            //if (!user) {
-            //    return Boom.notFound('No user with this id');
-            //}
+            const user = await User.findOne({ _id: request.params.id });
+            if (!user) {
+                return Boom.notFound('No user with this id');
+            }
             island.user = userId;
             island = await island.save();
             return island;

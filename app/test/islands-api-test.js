@@ -37,21 +37,34 @@ suite('Islands API tests', function () {
 
     test('create an island', async function () {
 //island not being created correctly, something to do with axios headers i think..?
-        try {
-            const returnedUser = await funnelService.createUser(newUser);
-            console.log(returnedUser._id);
-            await axios.post('http://desktop-mekcgog:3000/api/users/' + returnedUser._id + '/islands', islands[0]);
-            //await axios.post('http://desktop-mekcgog:3000/api/user/5ed18c1cf24827183496bfd5/islands', islands[0],
-            const returnedIslands = await funnelService.getIslands("returnedUser._id");
-            //console.log('test');
-            assert.equal(returnedIslands.length, 0);
-            assert(_.some([returnedIslands[0]], islands[0]), 'returned island must be a superset of island');
-        } catch (error) {
-            console.log(error)
-            console.log(error.response)
-            return null
-        }
+        const returnedUser = await funnelService.createUser(newUser);
+        console.log(returnedUser._id);
+        await axios.post('http://desktop-mekcgog:3000/api/users/' + returnedUser._id + '/islands', islands[0]);
+        //await axios.post('http://desktop-mekcgog:3000/api/user/5ed18c1cf24827183496bfd5/islands', islands[0],
+        const returnedIslands = await funnelService.getIslands("returnedUser._id");
+        console.log(returnedIslands);
+        assert.equal(returnedIslands.length, 0);
+        assert(_.some([returnedIslands[0]], islands[0]), 'returned island must be a superset of island');
+        console.log(error)
+        console.log(error.response)
+        return null
     });
+
+    test('create a island', async function() {
+        const returnedUser = await funnelService.createUser(newUser);
+        console.log(returnedUser);
+        //add island is the problem - returned value is null
+        await funnelService.addIsland(returnedUser._id, islands[0]);
+        const returnedIslands = await funnelService.getIslands(returnedUser._id);
+        console.log(returnedIslands);
+        assert.equal(returnedIslands.length, 1);
+        assert(_.some([returnedIslands[0]], islands[0]), 'returned donation must be a superset of donation');
+    });
+
+
+
+
+
     test('create multiple islands', async function() {
         try {
             const returnedUser = await funnelService.createUser(newUser);
@@ -105,5 +118,5 @@ suite('Islands API tests', function () {
 //        assert(_.some([users[0]], newUser), 'returnedUser must be a superset of newUser');
 //    });
 
-    
+
 });

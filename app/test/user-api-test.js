@@ -7,8 +7,7 @@ const _ = require('lodash');
 //const utils = require('../app/api/utils.js');
 
 
-suite('User API tests', function () {
-
+suite('User API tests', function() {
     let users = fixtures.users;
     let newUser = fixtures.newUser;
 
@@ -25,29 +24,26 @@ suite('User API tests', function () {
         funnelService.clearAuth();
     });
 
-    test('create a user', async function () {
+    test('create a user', async function() {
         const returnedUser = await funnelService.createUser(newUser);
         assert(_.some([returnedUser], newUser), 'returnedUser must be a superset of newUser');
         assert.isDefined(returnedUser._id);
     });
 
-     test('get user', async function () {
+    test('get user', async function() {
         const u1 = await funnelService.createUser(newUser);
         const u2 = await funnelService.getUser(u1._id);
         assert.deepEqual(u1, u2);
     });
 
-
-
-    test('get invalid user', async function () {
+    test('get invalid user', async function() {
         const u1 = await funnelService.getUser('1234');
         assert.isNull(u1);
         const u2 = await funnelService.getUser('012345678901234567890123');
         assert.isNull(u2);
     });
 
-
-    test('delete a user', async function () {
+    test('delete a user', async function() {
         let u = await funnelService.createUser(newUser);
         assert(u._id != null);
         await funnelService.deleteOneUser(u._id);
@@ -55,29 +51,44 @@ suite('User API tests', function () {
         assert(u == null);
     });
 
-    test('get all users', async function () {
+    test('get all users', async function() {
+        await funnelService.deleteAllUsers();
+        await funnelService.createUser(newUser);
+        await funnelService.authenticate(newUser);
         for (let u of users) {
             await funnelService.createUser(u);
         }
 
         const allUsers = await funnelService.getUsers();
-        assert.equal(allUsers.length, users.length);
+        assert.equal(allUsers.length, users.length + 1);
     });
 
-    test('get users detail', async function () {
+    test('get users detail', async function() {
+        await funnelService.deleteAllUsers();
+        const user = await funnelService.createUser(newUser);
+        await funnelService.authenticate(newUser);
         for (let u of users) {
             await funnelService.createUser(u);
         }
 
+        const testUser = {
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            password: user.password
+        };
+        users.unshift(testUser);
         const allUsers = await funnelService.getUsers();
         for (var i = 0; i < users.length; i++) {
             assert(_.some([allUsers[i]], users[i]), 'returnedUser must be a superset of newUser');
         }
     });
 
-    test('get all users empty', async function () {
+    test('get all users empty', async function() {
+        await funnelService.deleteAllUsers();
+        const user = await funnelService.createUser(newUser);
+        await funnelService.authenticate(newUser);
         const allUsers = await funnelService.getUsers();
-        assert.equal(allUsers.length, 0);
+        assert.equal(allUsers.length, 1);
     });
-
 });
