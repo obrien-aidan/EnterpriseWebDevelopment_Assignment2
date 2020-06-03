@@ -5,34 +5,43 @@ const Boom = require('@hapi/boom');
 
 const Islands = {
     findAll: {
-        auth: false,
+        auth: {
+            strategy: 'jwt',
+        },
         handler: async function(request, h) {
             const islands = await Island.find();
             return islands;
         }
     },
     findByUser: {
-        auth: false,
+        auth: {
+            strategy: 'jwt',
+        },
         handler: async function(request, h) {
             const islands = await Island.find({ user: request.params.id });
             return islands;
         }
     },
     addIsland: {
-        auth: false,
+        auth: {
+            strategy: 'jwt',
+        },
         handler: async function(request, h) {
+            const userId = utils.getUserIdFromRequest(request);
             let island = new Island(request.payload);
-            const user = await User.findOne({ _id: request.params.id });
-            if (!user) {
-                return Boom.notFound('No user with this id');
-            }
-            island.user = user._id;
+            //const user = await User.findOne({ _id: request.params.id });
+            //if (!user) {
+            //    return Boom.notFound('No user with this id');
+            //}
+            island.user = userId;
             island = await island.save();
             return island;
         }
     },
     deleteAll: {
-        auth: false,
+        auth: {
+            strategy: 'jwt',
+        },
         handler: async function(request, h) {
             await Island.deleteMany({});
             return { success: true };

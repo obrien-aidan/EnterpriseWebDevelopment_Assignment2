@@ -4,6 +4,7 @@ const assert = require('chai').assert;
 const FunnelService = require('./funnel-service');
 const fixtures = require('./fixtures.json');
 const _ = require('lodash');
+//const utils = require('../app/api/utils.js');
 
 
 suite('User API tests', function () {
@@ -13,12 +14,15 @@ suite('User API tests', function () {
 
     const funnelService = new FunnelService(fixtures.funnelService);
 
-    setup(async function () {
+    suiteSetup(async function() {
         await funnelService.deleteAllUsers();
+        const returnedUser = await funnelService.createUser(newUser);
+        const response = await funnelService.authenticate(newUser);
     });
 
-    teardown(async function () {
+    suiteTeardown(async function() {
         await funnelService.deleteAllUsers();
+        funnelService.clearAuth();
     });
 
     test('create a user', async function () {
@@ -32,6 +36,8 @@ suite('User API tests', function () {
         const u2 = await funnelService.getUser(u1._id);
         assert.deepEqual(u1, u2);
     });
+
+
 
     test('get invalid user', async function () {
         const u1 = await funnelService.getUser('1234');

@@ -1,6 +1,5 @@
 'use strict';
 
-
 const assert = require('chai').assert;
 const FunnelService = require('./funnel-service');
 const fixtures = require('./fixtures.json');
@@ -15,18 +14,29 @@ suite('Islands API tests', function () {
 
     const funnelService = new FunnelService(fixtures.funnelService);
 
+    suiteSetup(async function() {
+        await funnelService.deleteAllUsers();
+        const returnedUser = await funnelService.createUser(newUser);
+        const response = await funnelService.authenticate(newUser);
+    });
+
+    suiteTeardown(async function() {
+        await funnelService.deleteAllUsers();
+        funnelService.clearAuth();
+    });
+
     setup(async function() {
         funnelService.deleteAllUsers();
         funnelService.deleteAllIslands();
     });
 
     teardown(async function() {});
-    const headers = {
-        'Content-Type': 'application/json',
-    }
+    //const headers = {
+    //    'Content-Type': 'application/json',
+   // }
 
     test('create an island', async function () {
-//island not being created correctly
+//island not being created correctly, something to do with axios headers i think..?
         try {
             const returnedUser = await funnelService.createUser(newUser);
             console.log(returnedUser._id);
@@ -83,4 +93,17 @@ suite('Islands API tests', function () {
             return null
         }
     });
+
+    //ADD AN ISLAND AND CHECK USER
+    //test('create a donation and check donor', async function() {
+    //    const returnedCandidate = await donationService.createCandidate(newCandidate);
+    //    await donationService.makeDonation(returnedCandidate._id, donations[0]);
+    //    const returnedDonations = await donationService.getDonations(returnedCandidate._id);
+    //    assert.isDefined(returnedDonations[0].donor);
+
+//        const users = await donationService.getUsers();
+//        assert(_.some([users[0]], newUser), 'returnedUser must be a superset of newUser');
+//    });
+
+    
 });
