@@ -1,12 +1,3 @@
-//To upload or to retrieve data from cloudinary
-//const ImageStore = require("./app/models/image-store");
-//Like Express JS, Hapi is another framework of Node JS
-//const Hapi = require("@hapi/hapi");
-//require("dotenv").config();
-//const server = Hapi.server({
-//  port: process.env.PORT || 3000,
-//  routes: { cors: true }
-//});
 'use strict';
 
 const Hapi = require('@hapi/hapi');
@@ -27,11 +18,9 @@ const server = Hapi.server({
 
 
 
-
-
 require("./app/models/db");
 
-//Cloudinary Account
+//VLOUDINARY
 const credentials = {
   cloud_name: process.env.name,
   api_key: process.env.key,
@@ -47,7 +36,7 @@ async function init() {
   await server.register(require("@hapi/cookie"));
   await server.register(require('hapi-auth-jwt2'));
 
-  //Hapi Joi validator
+  //JOI
   server.validator(require("@hapi/joi"));
 
   server.auth.strategy("session", "cookie", {
@@ -65,10 +54,10 @@ async function init() {
   });
 
 
-  server.auth.default("session");
+ server.auth.default("session");
   ImageStore.configure(credentials);
 
-  //To include the view for managing I/O operations
+  //BIEWS
   server.views({
     engines: {
       hbs: require("handlebars"),
@@ -81,7 +70,7 @@ async function init() {
     isCached: false,
   });
 
-  //Include all the routers that should be implemented in our complete app
+  //INCLUDE ALL ROUTERS
   server.route(require("./routes"));
   server.route(require('./routes-api'));
 

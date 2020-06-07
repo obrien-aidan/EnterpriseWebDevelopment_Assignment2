@@ -1,10 +1,7 @@
 require("dotenv").config();
-//This file is for Database Connectivity and Calling of DB functions
-
-//Mongoose is an Object Oriented Modelling tool for MongoDB
 const Mongoose = require("mongoose");
 
-//Use these to avoid from Warnings
+//AVOID WARNINGS
 Mongoose.set("useNewUrlParser", true);
 Mongoose.set("useUnifiedTopology", true);
 
@@ -19,7 +16,7 @@ db.on("disconnected", function() {
   console.log("database disconnected");
 });
 
-//Importing Data
+//IMPORT SEEDED DATA
 async function seed() {
   var seeder = require("mais-mongoose-seeder")(Mongoose);
   const data = require("./seed-data.json");

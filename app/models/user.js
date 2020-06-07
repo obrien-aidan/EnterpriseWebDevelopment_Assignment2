@@ -2,14 +2,13 @@ const Boom = require("@hapi/boom");
 const Mongoose = require("mongoose");
 const Schema = Mongoose.Schema;
 
-//User Schema
+
 const userSchema = new Schema({
   firstName: String,
   lastName: String,
   email: String,
   password: String,
 });
-//Process User Schema
 userSchema.statics.findByEmail = function(email) {
   return this.findOne({ email: email });
 };

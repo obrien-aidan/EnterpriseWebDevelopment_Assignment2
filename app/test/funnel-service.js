@@ -65,6 +65,7 @@ class FunnelService {
             const response = await axios.get(this.baseUrl + '/api/users/' + id + '/islands');
             return response.data;
         } catch (e) {
+            console.error(e)
             return null;
         }
     }

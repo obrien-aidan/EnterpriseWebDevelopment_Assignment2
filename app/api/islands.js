@@ -2,6 +2,7 @@
 const User = require('../models/user');
 const Island = require('../models/islands');
 const Boom = require('@hapi/boom');
+const utils = require('./utils')
 
 const Islands = {
     findAll: {
@@ -27,9 +28,11 @@ const Islands = {
             strategy: 'jwt',
         },
         handler: async function(request, h) {
-            const userId = utils.getUserIdFromRequest(request);
+            //const userId = utils.getUserIdFromRequest(request);
             let island = new Island(request.payload);
             const user = await User.findOne({ _id: request.params.id });
+            island.user = userId;
+
             if (!user) {
                 return Boom.notFound('No user with this id');
             }

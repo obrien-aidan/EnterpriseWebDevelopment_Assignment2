@@ -33,7 +33,7 @@ suite('Islands API tests', function () {
     teardown(async function() {});
     //const headers = {
     //    'Content-Type': 'application/json',
-   // }
+    // }
 
     test('create an island', async function () {
 //island not being created correctly, something to do with axios headers i think..?
@@ -84,7 +84,7 @@ suite('Islands API tests', function () {
             console.log(error)
             console.log(error.response)
             return null
-            }
+        }
     });
 
     test('delete all islands', async function() {
@@ -106,17 +106,5 @@ suite('Islands API tests', function () {
             return null
         }
     });
-
-    //ADD AN ISLAND AND CHECK USER
-    //test('create a donation and check donor', async function() {
-    //    const returnedCandidate = await donationService.createCandidate(newCandidate);
-    //    await donationService.makeDonation(returnedCandidate._id, donations[0]);
-    //    const returnedDonations = await donationService.getDonations(returnedCandidate._id);
-    //    assert.isDefined(returnedDonations[0].donor);
-
-//        const users = await donationService.getUsers();
-//        assert(_.some([users[0]], newUser), 'returnedUser must be a superset of newUser');
-//    });
-
 
 });

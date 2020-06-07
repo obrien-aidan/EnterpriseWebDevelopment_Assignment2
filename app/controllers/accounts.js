@@ -1,26 +1,23 @@
-// Importing User Model
 const User = require("../models/user");
-//Boom is a part of the hapi ecosystem and was designed to work seamlessly with hapi
 const Boom = require("@hapi/boom");
-//Hapi/Joi is an object schema description language and validator for JavaScript objects
 const Joi = require("@hapi/joi");
 
 const Accounts = {
-  //To show splash/main screen
+  //MAIN SCREEN
   index: {
     auth: false,
     handler: function(request, h) {
       return h.view("main", { title: "Welcome to Islands" });
     },
   },
-  //Method for displaying SignUp Page
+  //SIGNUP PAGE
   showSignup: {
     auth: false,
     handler: function(request, h) {
       return h.view("signup", { title: "Sign up for Islands" });
     },
   },
-  //Method for SignUp New User on Islands with validation
+  //SIGNUP
   signup: {
     auth: false,
     validate: {
@@ -74,7 +71,7 @@ const Accounts = {
       return h.view("login", { title: "Login to Islands" });
     },
   },
-  //Implement login methodology
+  //LOGIN
   login: {
     auth: false,
     validate: {
@@ -110,7 +107,7 @@ const Accounts = {
       }
     },
   },
-  //Implement Logout with removing cookies
+  //LOGOUT
   logout: {
     auth: false,
     handler: function(request, h) {
