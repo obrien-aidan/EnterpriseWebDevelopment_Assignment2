@@ -15,3 +15,4 @@ module.exports = [
     { method: 'POST', path: '/api/users/authenticate', config: Users.authenticate },
 
 ];
+

@@ -39,7 +39,7 @@ suite('Islands API tests', function () {
 //island not being created correctly, something to do with axios headers i think..?
         const returnedUser = await funnelService.createUser(newUser);
         console.log(returnedUser._id);
-        await axios.post('http://desktop-mekcgog:3000/api/users/' + returnedUser._id + '/islands', islands[0]);
+        await axios.post('http://desktop-mekcgog:3000/api/user/' + returnedUser._id + '/islands', islands[0]);
         //await axios.post('http://desktop-mekcgog:3000/api/user/5ed18c1cf24827183496bfd5/islands', islands[0],
         const returnedIslands = await funnelService.getIslands("returnedUser._id");
         console.log(returnedIslands);

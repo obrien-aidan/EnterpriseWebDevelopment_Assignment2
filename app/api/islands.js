@@ -23,20 +23,20 @@ const Islands = {
             return islands;
         }
     },
-    addIsland: {
+     addIsland: {
         auth: {
             strategy: 'jwt',
         },
         handler: async function(request, h) {
-            //const userId = utils.getUserIdFromRequest(request);
+            const userId = utils.getUserIdFromRequest(request);
             let island = new Island(request.payload);
-            const user = await User.findOne({ _id: request.params.id });
-            island.user = userId;
+            const user = await User.findOne({ _id: userId });
+            island.user = user;
 
             if (!user) {
                 return Boom.notFound('No user with this id');
             }
-            island.user = userId;
+            // island.user = userId;
             island = await island.save();
             return island;
         }
