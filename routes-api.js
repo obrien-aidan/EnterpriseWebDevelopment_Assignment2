@@ -2,8 +2,6 @@ const Users= require('./app/api/users');
 const Islands= require('./app/api/islands');
 
 module.exports = [
-    //{ method: 'GET', path: '/api/users', config: Users.findByToken },
-
     { method: 'GET', path: '/api/users', config: Users.find },
     { method: 'GET', path: '/api/users/{id}', config: Users.findOne },
     { method: 'POST', path: '/api/users', config: Users.create },

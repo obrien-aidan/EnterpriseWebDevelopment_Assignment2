@@ -1,17 +1,33 @@
 const ImageStore = require("../models/image-store");
+//User Schema
 const User = require("../models/user");
+//Island Schema
 const Island = require("../models/islands");
 const Joi = require("@hapi/joi");
 
 
 const Islands = {
-  //PAGE
+//  index2: {
+//    handler: async function(request, h) {
+//      try {
+//        const allImages = await ImageStore.getAllImages();
+//        return h.view("gallery", {
+//          title: "Cloudinary Gallery",
+//          images: allImages,
+//        });
+//      } catch (err) {
+//        console.log(err);
+//      }
+//   },
+  // },
+
+  //Show page to add island
   home: {
     handler: async function(request, h) {
       return h.view("home", { title: "addIsland" });
     },
   },
-  //LIST ISLANDS
+  //Show a report of all uploaded islands
   report: {
     handler: async function(request, h) {
       const islands = await Island.find()
@@ -23,14 +39,14 @@ const Islands = {
       });
     },
   },
-  //ADD ISLANDS
+  //Implementation of Add Island's function
   addIsland: {
     validate: {
       payload: {
         name: Joi.string().required(),
         provence: Joi.string().required(),
         description: Joi.string().required(),
-        image: Joi.string().required()
+        image: Joi.object().required()
       },
       failAction: function (request, h, error) {
         return h
