@@ -16,11 +16,9 @@ const server = Hapi.server({
   routes: { cors: true }
 });
 
-
-
 require("./app/models/db");
 
-//VLOUDINARY
+//CLOUDINARY
 const credentials = {
   cloud_name: process.env.name,
   api_key: process.env.key,
@@ -53,11 +51,10 @@ async function init() {
     verifyOptions: { algorithms: ['HS256'] },
   });
 
-
  server.auth.default("session");
   ImageStore.configure(credentials);
 
-  //BIEWS
+  //VIEWS
   server.views({
     engines: {
       hbs: require("handlebars"),
@@ -70,7 +67,7 @@ async function init() {
     isCached: false,
   });
 
-  //INCLUDE ALL ROUTERS
+  //INCLUDE ROUTEs
   server.route(require("./routes"));
   server.route(require('./routes-api'));
 
@@ -78,7 +75,6 @@ async function init() {
   console.log(`Server running at: ${server.info.uri}`);
 }
 
-//Node JS Process
 process.on("unhandledRejection", (err) => {
   console.log(err);
   process.exit(1);
