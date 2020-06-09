@@ -1,11 +1,8 @@
 'use strict';
-
 const assert = require('chai').assert;
 const FunnelService = require('./funnel-service');
 const fixtures = require('./fixtures.json');
 const utils = require('C:\\Users\\Aidan\\Documents\\eWebDev_Ass2\\0\\app\\api\\utils.js');
-//const utils = require('../app/api/utils.js');
-
 
 suite('Authentication API tests', function () {
 

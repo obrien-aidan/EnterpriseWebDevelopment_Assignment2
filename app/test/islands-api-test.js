@@ -103,5 +103,4 @@ suite('Island API tests', function() {
         await funnelService.deleteAllIslands();
     });
 
-    
 });

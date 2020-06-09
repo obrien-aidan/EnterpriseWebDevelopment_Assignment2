@@ -15,7 +15,5 @@ module.exports = [
     { method: 'POST', path: '/api/users/islands', config: Islands.addIsland },
     { method: 'POST', path: '/api/users/authenticate', config: Users.authenticate },
     { method: 'DELETE', path: '/api/islands', config: Islands.deleteAll },
-
-
 ];
 
