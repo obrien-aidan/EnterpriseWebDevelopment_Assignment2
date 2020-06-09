@@ -51,9 +51,17 @@ class FunnelService {
             return null;
         }
     }
+  //  async addIsland(id, island) {
+  //      try {
+  //          const response = await axios.post(this.baseUrl + '/api/users/' + id + '/islands', island);
+  //          return response.data;
+  //      } catch (e) {
+  //          return null;
+  //     }
+  //  }
     async addIsland(id, island) {
         try {
-            const response = await axios.post(this.baseUrl + '/api/users/' + id + '/islands', island);
+            const response = await axios.post(this.baseUrl + '/api/users/islands', island);
             return response.data;
         } catch (e) {
             return null;

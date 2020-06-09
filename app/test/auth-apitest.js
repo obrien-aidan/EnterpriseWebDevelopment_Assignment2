@@ -21,7 +21,7 @@ suite('Authentication API tests', function () {
     test('authenticate', async function () {
         const returnedUser = await funnelService.createUser(newUser);
         const response = await funnelService.authenticate(newUser);
-        console.log(newUser)
+        console.log(returnedUser)
         assert(response.success);
         assert.isDefined(response.token);
     });
