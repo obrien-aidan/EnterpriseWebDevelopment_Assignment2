@@ -11,7 +11,8 @@ module.exports = [
     { method: 'GET', path: '/api/islands', config: Islands.findAll },
     { method: 'GET', path: '/api/users/{id}/islands', config: Islands.findByUser },
 
-    { method: 'POST', path: '/api/users/{id}/islands', config: Islands.addIsland },
+    //{ method: 'POST', path: '/api/users/{id}/islands', config: Islands.addIsland },
+    { method: 'POST', path: '/api/users/islands', config: Islands.addIsland },
     { method: 'POST', path: '/api/users/authenticate', config: Users.authenticate },
 
 ];

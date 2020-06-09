@@ -31,12 +31,12 @@ const Islands = {
             const userId = utils.getUserIdFromRequest(request);
             let island = new Island(request.payload);
             const user = await User.findOne({ _id: userId });
-            island.user = user;
+            //island.user = user._id;
 
             if (!user) {
                 return Boom.notFound('No user with this id');
             }
-            // island.user = userId;
+            island.user = userId;
             island = await island.save();
             return island;
         }
